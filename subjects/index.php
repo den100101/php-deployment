@@ -11,7 +11,7 @@ if ($search !== "") {
             s.CODE,
             s.TITLE,
             s.LECTURE,
-            s.LABORATORY,
+            s.LABORATORTY,
             s.CREDIT,
             s.GRADE,
             s.PRE_REQUISITE,
@@ -49,7 +49,6 @@ if ($search !== "") {
     $stmt->execute();
 
     $subjects = $stmt->get_result();
-
 } else {
 
     $subjects = $conn->query("
@@ -58,7 +57,7 @@ if ($search !== "") {
             s.CODE,
             s.TITLE,
             s.LECTURE,
-            s.LABORATORY,
+            s.LABORATORTY,
             s.CREDIT,
             s.GRADE,
             s.PRE_REQUISITE,
@@ -90,13 +89,11 @@ if ($search !== "") {
 
     <meta
         name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+        content="width=device-width, initial-scale=1.0">
 
     <title>Subjects</title>
 
     <style>
-
         * {
             margin: 0;
             padding: 0;
@@ -131,7 +128,7 @@ if ($search !== "") {
 
             font-weight: bold;
 
-            box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
         }
 
 
@@ -243,7 +240,7 @@ if ($search !== "") {
 
             padding: 14px 17px;
 
-            box-shadow: 0 2px 9px rgba(0,0,0,0.07);
+            box-shadow: 0 2px 9px rgba(0, 0, 0, 0.07);
 
             overflow-x: auto;
         }
@@ -425,7 +422,6 @@ if ($search !== "") {
             }
 
         }
-
     </style>
 
 </head>
@@ -469,8 +465,7 @@ if ($search !== "") {
 
             <a
                 href="edit.php"
-                class="add-button"
-            >
+                class="add-button">
                 + Add Subject
             </a>
 
@@ -481,8 +476,7 @@ if ($search !== "") {
 
         <a
             href="../index.php"
-            class="back-button"
-        >
+            class="back-button">
             ← Back to Home
         </a>
 
@@ -647,8 +641,7 @@ if ($search !== "") {
 
                                     <a
                                         href="edit.php?id=<?= $row["ID"] ?>"
-                                        class="update-button"
-                                    >
+                                        class="update-button">
                                         Update
                                     </a>
 
@@ -656,8 +649,7 @@ if ($search !== "") {
                                     <a
                                         href="delete.php?id=<?= $row["ID"] ?>"
                                         class="delete-button"
-                                        onclick="return confirm('Are you sure you want to delete this subject?');"
-                                    >
+                                        onclick="return confirm('Are you sure you want to delete this subject?');">
                                         Delete
                                     </a>
 
@@ -674,8 +666,7 @@ if ($search !== "") {
 
                             <td
                                 colspan="11"
-                                class="no-records"
-                            >
+                                class="no-records">
                                 No subject records found.
                             </td>
 
