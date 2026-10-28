@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 
@@ -15,7 +14,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     if ($username === "" || $password === "") {
         $error = "Please enter username and password.";
-
     } else {
         try {
             // Correct table: tbl_user
@@ -45,13 +43,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 // Redirect to your main page
                 header("Location: index.php");
                 exit;
-
             } else {
                 $error = "Invalid username or password.";
             }
 
             $stmt->close();
-
         } catch (mysqli_sql_exception $e) {
             error_log("Login error: " . $e->getMessage());
             $error = "Database error. Please check the database configuration.";
@@ -62,6 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -72,7 +69,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             box-sizing: border-box;
         }
 
-        html, body {
+        html,
+        body {
             margin: 0;
             padding: 0;
             width: 100%;
@@ -86,12 +84,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             align-items: center;
             padding: 20px;
             font-family: Arial, Helvetica, sans-serif;
-            background: linear-gradient(
-                135deg,
-                #eeeaff 0%,
-                #e4dcff 50%,
-                #ded4ff 100%
-            );
+            background: linear-gradient(135deg,
+                    #eeeaff 0%,
+                    #e4dcff 50%,
+                    #ded4ff 100%);
         }
 
         .login-container {
@@ -203,55 +199,54 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 </head>
 
 <body>
-<div class="login-container">
-    <div class="login-card">
+    <div class="login-container">
+        <div class="login-card">
 
-        <h1 class="login-title">Login</h1>
-        <p class="login-subtitle">4ABALABAGAN System</p>
+            <h1 class="login-title">Login</h1>
+            <p class="login-subtitle">4ABALABAGAN System</p>
 
-        <?php if ($error !== ""): ?>
-            <div class="error-message">
-                <?= htmlspecialchars($error, ENT_QUOTES, "UTF-8") ?>
-            </div>
-        <?php endif; ?>
+            <?php if ($error !== ""): ?>
+                <div class="error-message">
+                    <?= htmlspecialchars($error, ENT_QUOTES, "UTF-8") ?>
+                </div>
+            <?php endif; ?>
 
-        <form method="POST" action="login.php">
+            <form method="POST" action="login.php">
 
-            <div class="form-group">
-                <label class="form-label" for="username">Username</label>
-                <input
-                    type="text"
-                    id="username"
-                    name="username"
-                    class="form-input"
-                    placeholder="Enter username"
-                    autocomplete="username"
-                    required
-                >
-            </div>
+                <div class="form-group">
+                    <label class="form-label" for="username">Username</label>
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        class="form-input"
+                        placeholder="Enter username"
+                        autocomplete="username"
+                        required>
+                </div>
 
-            <div class="form-group">
-                <label class="form-label" for="password">Password</label>
-                <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    class="form-input"
-                    placeholder="Enter password"
-                    autocomplete="current-password"
-                    required
-                >
-            </div>
+                <div class="form-group">
+                    <label class="form-label" for="password">Password</label>
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        class="form-input"
+                        placeholder="Enter password"
+                        autocomplete="current-password"
+                        required>
+                </div>
 
-            <button type="submit" class="login-button">Login</button>
-        </form>
+                <button type="submit" class="login-button">Login</button>
+            </form>
 
-        <p class="register-text">
-            Don't have an account?
-            <a href="register.php" class="register-link">Register here</a>
-        </p>
+            <p class="register-text">
+                Don't have an account?
+                <a href="register.php" class="register-link">Register here</a>
+            </p>
 
+        </div>
     </div>
-</div>
 </body>
+
 </html>
