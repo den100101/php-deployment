@@ -1,32 +1,41 @@
+
 <?php
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-
+/*
+|--------------------------------------------------------------------------
+| Application Base Path
+|--------------------------------------------------------------------------
+| Local XAMPP: /4abalabagan
+| Render:       (empty)
+*/
+$basePath = (getenv("APP_ENV") === "production")
+    ? ""
+    : "/4abalabagan";
 
 if (empty($_SESSION["user_id"])) {
-    header("Location: /4abalabagan/login.php");
+    header("Location: " . $basePath . "/login.php");
     exit;
 }
-
 
 $username = $_SESSION["username"] ?? "";
 $fullname = $_SESSION["fullname"] ?? "";
 $usertype = strtolower(trim($_SESSION["usertype"] ?? ""));
 
-/* =========================================
-   ROLE PERMISSION
-========================================= */
-
+/*
+|--------------------------------------------------------------------------
+| Role Permissions
+|--------------------------------------------------------------------------
+*/
 function requireRole(array $allowedRoles): void
 {
     $currentRole = strtolower(
         trim($_SESSION["usertype"] ?? "")
     );
 
-    /* Normalize role names */
     $roleAliases = [
         "administrator" => "admin",
         "admin"         => "admin",
@@ -49,12 +58,12 @@ function requireRole(array $allowedRoles): void
         $allowedRoles
     );
 
-    /* Allow only the specified roles */
     if (!in_array($currentRole, $allowedRoles, true)) {
         http_response_code(403);
 
-        exit(
-            '<!DOCTYPE html>
+        $homeUrl = $basePath . "/index.php";
+
+        exit('<!DOCTYPE html>
             <html lang="en">
             <head>
                 <meta charset="UTF-8">
@@ -91,12 +100,14 @@ function requireRole(array $allowedRoles): void
                 <div class="box">
                     <h2>403 - Access Denied</h2>
                     <p>Wala kang permission na buksan ang page na ito.</p>
-                    <a href="/4abalabagan/index.php">Back to Home</a>
+                    <a href="' . htmlspecialchars(
+                $homeUrl,
+                ENT_QUOTES,
+                "UTF-8"
+            ) . '">Back to Home</a>
                 </div>
             </body>
-            </html>'
-        );
+            </html>');
     }
 }
 ?>
-```
