@@ -11,6 +11,10 @@ if (session_status() === PHP_SESSION_NONE) {
 | Local XAMPP: /4abalabagan
 | Render:       (empty)
 */
+$isProduction = getenv("APP_ENV") === "production"
+    || getenv("RENDER") === "true";
+
+
 $basePath = (getenv("APP_ENV") === "production")
     ? ""
     : "/4abalabagan";
@@ -31,6 +35,10 @@ $usertype = strtolower(trim($_SESSION["usertype"] ?? ""));
 */
 function requireRole(array $allowedRoles): void
 {
+
+
+    global $basePath;
+
     $currentRole = strtolower(
         trim($_SESSION["usertype"] ?? "")
     );
