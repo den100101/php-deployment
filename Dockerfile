@@ -8,7 +8,6 @@ WORKDIR /var/www/html
 
 COPY . /var/www/html/
 
-# Verify that the login page is included in the image.
 RUN test -f /var/www/html/login.php
 
 RUN chown -R www-data:www-data /var/www/html

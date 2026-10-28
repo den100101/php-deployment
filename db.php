@@ -1,4 +1,3 @@
-
 <?php
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
@@ -41,4 +40,3 @@ try {
     http_response_code(500);
     exit("Database connection failed. Please try again later.");
 }
-?>
