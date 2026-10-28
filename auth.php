@@ -1,4 +1,3 @@
-
 <?php
 
 if (session_status() === PHP_SESSION_NONE) {
@@ -101,13 +100,12 @@ function requireRole(array $allowedRoles): void
                     <h2>403 - Access Denied</h2>
                     <p>Wala kang permission na buksan ang page na ito.</p>
                     <a href="' . htmlspecialchars(
-                $homeUrl,
-                ENT_QUOTES,
-                "UTF-8"
-            ) . '">Back to Home</a>
+            $homeUrl,
+            ENT_QUOTES,
+            "UTF-8"
+        ) . '">Back to Home</a>
                 </div>
             </body>
             </html>');
     }
 }
-?>
